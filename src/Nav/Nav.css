@@ -1,0 +1,26 @@
+.Nav {
+  position: fixed;
+  top: 1vh;
+  left: 10vw;
+  background-color: #63adf2;
+  width: 80vw;
+  height: 4vh;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.Nav a {
+  color: white;
+  margin: 5px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.Nav a.active {
+  background-color: black;
+  border-radius: 5px;
+  padding: 2px;
+  color: gold;
+}

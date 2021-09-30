@@ -1,5 +1,11 @@
-.App {
+body {
   text-align: center;
+  background: url("http://i.imgur.com/MpyL24F.gif") no-repeat center center
+    fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .App-logo {
