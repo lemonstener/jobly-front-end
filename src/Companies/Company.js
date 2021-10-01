@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import JoblyApi from "../JoblyApi/JoblyApi";
-import JobList from "../Jobs/JobList";
+import Job from "../Jobs/Job";
 import "./Company.css";
 
 const Company = () => {
@@ -16,7 +16,7 @@ const Company = () => {
       setLoading(false);
     };
     getData();
-  }, []);
+  }, [handle]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -27,7 +27,11 @@ const Company = () => {
       <p>{company.description}</p>
       <p>{company.numEmployees} people work here.</p>
       <p>{company.jobs.length} jobs available: </p>
-      <JobList jobs={company.jobs} />
+      {company.jobs.map((j) => {
+        return (
+          <Job title={j.title} id={j.id} salary={j.salary} equity={j.equity} />
+        );
+      })}
     </div>
   );
 };

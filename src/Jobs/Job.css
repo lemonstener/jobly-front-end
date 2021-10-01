@@ -3,12 +3,30 @@
   margin: 10px;
   border-radius: 5px;
   border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: rgba(148, 168, 154, 0.8);
-  width: 60vw;
+  width: 35vw;
+  transition: all 0.18s;
+}
+
+.Job-company {
+  background-color: black;
+  color: #ff8811;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.Job:hover {
+  background-color: rgba(57, 47, 90, 0.8);
+  width: 37vw;
+  color: white;
 }
 
 .Job button {
-  background-color: #e4572e;
+  background-color: #ff8811;
   color: white;
   font-weight: bold;
   border-radius: 5px;

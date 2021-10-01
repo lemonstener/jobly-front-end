@@ -1,10 +1,13 @@
 import { Switch, Route, Redirect } from "react-router";
+import App from "../App";
 import Companies from "../Companies/Companies";
 import Company from "../Companies/Company";
+import LoginForm from "../Forms/LoginForm";
+import RegisterForm from "../Forms/RegisterForm";
 import Homepage from "../Homepage/Homepage";
-import Jobs from "../Jobs/Jobs";
+import JobList from "../Jobs/JobList";
 
-const Routes = () => {
+const Routes = ({ login, register }) => {
   return (
     <Switch>
       <Route exact path="/">
@@ -17,13 +20,13 @@ const Routes = () => {
         <Company />
       </Route>
       <Route exact path="/jobs">
-        <Jobs />
+        <JobList />
       </Route>
       <Route exact path="/signup">
-        <h1>Signup page</h1>
+        <RegisterForm register={register} />
       </Route>
       <Route exact path="/login">
-        <h1>Login page</h1>
+        <LoginForm login={login} />
       </Route>
       <Route exact path="/profile">
         <h1>Profile page</h1>

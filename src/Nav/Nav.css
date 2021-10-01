@@ -21,6 +21,18 @@
 .Nav a.active {
   background-color: black;
   border-radius: 5px;
-  padding: 2px;
+  padding: 4px;
   color: gold;
+}
+
+.Nav-logo {
+  background-color: #ff8811;
+  border-radius: 5px;
+  padding: 5px;
+  position: absolute;
+  left: 0vw;
+}
+
+.Nav-logo:active {
+  color: #ff8811;
 }

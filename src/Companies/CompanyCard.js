@@ -1,7 +1,7 @@
 import { useHistory } from "react-router";
 import "./CompanyCard.css";
 
-const CompanyCard = ({ name, handle }) => {
+const CompanyCard = ({ name, description, numEmployees, handle }) => {
   const history = useHistory();
 
   const goToHandle = (company) => {
@@ -9,7 +9,11 @@ const CompanyCard = ({ name, handle }) => {
   };
   return (
     <div onClick={() => goToHandle(handle)} className="CompanyCard">
-      <p>{name}</p>
+      <h3>{name}</h3>
+      <p>
+        <small>{numEmployees} people work here</small>
+      </p>
+      <p>{description}</p>
     </div>
   );
 };

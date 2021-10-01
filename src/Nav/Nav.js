@@ -1,11 +1,13 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import UserContext from "../UserContext";
 import "./Nav.css";
 
-const Nav = ({ user }) => {
+const Nav = () => {
+  const { currentUser } = useContext(UserContext);
   const loggedInUser = () => {
     return (
       <>
-        <NavLink to="/">Home</NavLink>
         <NavLink to="/companies">Companies</NavLink>
         <NavLink to="/jobs">Jobs</NavLink>
         <NavLink to="/profile">Profile</NavLink>
@@ -22,7 +24,14 @@ const Nav = ({ user }) => {
     );
   };
 
-  return <nav className="Nav">{user ? loggedInUser() : guestUser()}</nav>;
+  return (
+    <nav className="Nav">
+      <NavLink className="Nav-logo" to="/" exact={true}>
+        Jobly
+      </NavLink>
+      {currentUser ? loggedInUser() : guestUser()}
+    </nav>
+  );
 };
 
 export default Nav;
