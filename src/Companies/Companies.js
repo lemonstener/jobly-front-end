@@ -27,6 +27,8 @@ const Companies = () => {
         return (
           <>
             <CompanyCard
+              id={c.id}
+              key={c.handle}
               name={c.name}
               description={c.description}
               numEmployees={c.numEmployees}

@@ -1,17 +1,18 @@
-import { useState } from "react";
-import { useHistory } from "react-router";
+import { useContext, useState } from "react";
+import JoblyApi from "../JoblyApi/JoblyApi";
+import UserContext from "../UserContext";
+import { v4 as uuidv4 } from "uuid";
 
-const RegisterForm = ({ register }) => {
-  const initialState = {
-    username: "",
+const EditForm = () => {
+  const { user, setUser } = useContext(UserContext);
+  const [formData, setFormData] = useState({
+    firstName: user.firstName,
+    lastName: user.lastName,
+    email: user.email,
     password: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-  };
-  const [formData, setFormData] = useState(initialState);
+  });
   const [errors, setErrors] = useState([]);
-  const history = useHistory();
+  const [updatedUser, setUpdatedUser] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,25 +24,33 @@ const RegisterForm = ({ register }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await register(formData);
-    if (res.success) {
-      history.push("/");
-    } else {
-      setErrors(res.errors);
+    try {
+      const res = await JoblyApi.updateUser(user.username, formData);
+      setUser(res);
+      setUpdatedUser(true);
+    } catch (errors) {
+      setErrors(errors);
     }
   };
+
+  if (updatedUser) {
+    return (
+      <div>
+        <img
+          style={{ width: "10vw", marginTop: "30vh" }}
+          alt="Mario"
+          src="https://cdn2.scratch.mit.edu/get_image/gallery/26726579_170x100.png"
+        />
+        <p className="Forms-error" style={{ backgroundColor: "#1EA896" }}>
+          Arigato {user.username}-San!!!
+        </p>
+      </div>
+    );
+  }
 
   return (
     <>
       <form onSubmit={handleSubmit} className="Forms-user-form">
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          name="username"
-          value={formData.username}
-          onChange={handleChange}
-        />
         <label htmlFor="firstName">First name</label>
         <input
           type="text"
@@ -74,15 +83,19 @@ const RegisterForm = ({ register }) => {
           value={formData.password}
           onChange={handleChange}
         />
-        <button>REGISTER</button>
+        <button>UPDATE</button>
       </form>
       <div>
         {errors.map((e) => {
-          return <p className="Forms-error">{e}</p>;
+          return (
+            <p key={uuidv4()} className="Forms-error">
+              {e}
+            </p>
+          );
         })}
       </div>
     </>
   );
 };
 
-export default RegisterForm;
+export default EditForm;

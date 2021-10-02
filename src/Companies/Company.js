@@ -29,7 +29,13 @@ const Company = () => {
       <p>{company.jobs.length} jobs available: </p>
       {company.jobs.map((j) => {
         return (
-          <Job title={j.title} id={j.id} salary={j.salary} equity={j.equity} />
+          <Job
+            key={j.id}
+            title={j.title}
+            id={j.id}
+            salary={j.salary}
+            equity={j.equity}
+          />
         );
       })}
     </div>

@@ -1,7 +1,5 @@
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
-import JoblyApi from "../JoblyApi/JoblyApi";
-import UserContext from "../UserContext";
 import "./Forms.css";
 
 const LoginForm = ({ login }) => {
@@ -10,6 +8,7 @@ const LoginForm = ({ login }) => {
     password: "",
   };
   const [formData, setFormData] = useState(initialState);
+  const [errors, setErrors] = useState([]);
   const history = useHistory();
 
   const handleChange = (e) => {
@@ -24,32 +23,39 @@ const LoginForm = ({ login }) => {
     e.preventDefault();
     const res = await login(formData);
     if (res.success) {
-      history.push("/companies");
+      history.push("/");
     } else {
-      console.log(res.errors);
+      setErrors(res.errors);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="Forms-user-form">
-      <label htmlFor="username">Username</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        value={formData.username}
-        onChange={handleChange}
-      />
-      <label htmlFor="password">Password</label>
-      <input
-        type="text"
-        id="password"
-        name="password"
-        value={formData.password}
-        onChange={handleChange}
-      />
-      <button>LOGIN</button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit} className="Forms-user-form">
+        <label htmlFor="username">Username</label>
+        <input
+          type="text"
+          id="username"
+          name="username"
+          value={formData.username}
+          onChange={handleChange}
+        />
+        <label htmlFor="password">Password</label>
+        <input
+          type="text"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        <button>LOGIN</button>
+      </form>
+      <div>
+        {errors.map((e) => {
+          return <p className="Forms-error">{e}</p>;
+        })}
+      </div>
+    </>
   );
 };
 

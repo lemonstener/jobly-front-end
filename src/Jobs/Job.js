@@ -7,7 +7,7 @@ const Job = ({ title, salary, id, equity, name }) => {
       {name && <h4 className="Job-company">{name}</h4>}
       <p>Salary: ${salary || 0}</p>
       <p>Equity: {equity || "none"}</p>
-      <button>Apply</button>
+      <button>APPLY</button>
     </div>
   );
 };

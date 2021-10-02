@@ -3,14 +3,22 @@ import { NavLink } from "react-router-dom";
 import UserContext from "../UserContext";
 import "./Nav.css";
 
-const Nav = () => {
-  const { currentUser } = useContext(UserContext);
+const Nav = ({ logout }) => {
+  const { user } = useContext(UserContext);
   const loggedInUser = () => {
     return (
       <>
         <NavLink to="/companies">Companies</NavLink>
         <NavLink to="/jobs">Jobs</NavLink>
-        <NavLink to="/profile">Profile</NavLink>
+        <NavLink to="/profile">{user.username}</NavLink>
+        <NavLink
+          className="Nav-logout"
+          onClick={logout}
+          to="/logout"
+          exact={true}
+        >
+          Logout
+        </NavLink>
       </>
     );
   };
@@ -29,7 +37,7 @@ const Nav = () => {
       <NavLink className="Nav-logo" to="/" exact={true}>
         Jobly
       </NavLink>
-      {currentUser ? loggedInUser() : guestUser()}
+      {user ? loggedInUser() : guestUser()}
     </nav>
   );
 };

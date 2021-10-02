@@ -33,7 +33,7 @@ const SearchForm = (props) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="Forms-search" onSubmit={handleSubmit}>
       <label htmlFor="name">Search for a specific {props.type}</label>
       <input
         type="text"

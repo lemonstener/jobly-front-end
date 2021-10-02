@@ -1,6 +1,6 @@
 .Job {
   padding: 10px;
-  margin: 10px;
+  margin: 20px;
   border-radius: 5px;
   border: 1px solid black;
   display: flex;
@@ -8,20 +8,23 @@
   justify-content: center;
   align-items: center;
   background-color: rgba(148, 168, 154, 0.8);
-  width: 35vw;
+  width: 60%;
+  height: 30vh;
   transition: all 0.18s;
 }
 
 .Job-company {
-  background-color: black;
-  color: #ff8811;
+  background-color: #ff8811;
+  color: black;
   padding: 5px;
   border-radius: 5px;
+  border: 1px solid black;
 }
 
 .Job:hover {
-  background-color: rgba(57, 47, 90, 0.8);
-  width: 37vw;
+  background-color: rgba(57, 47, 90);
+  /* width: 40vw;
+  height: 35vh; */
   color: white;
 }
 

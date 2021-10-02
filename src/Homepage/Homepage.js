@@ -1,8 +1,18 @@
+import { useContext } from "react";
+import UserContext from "../UserContext";
+import "./Homepage.css";
+
 const Homepage = () => {
+  const { user } = useContext(UserContext);
   return (
-    <div>
-      <h1>Welcome!</h1>
-      <p>This is the homepage</p>
+    <div className="Homepage">
+      <h1>Jobly</h1>
+      {user && (
+        <p>
+          Welcome back, los... ahem, <b>{user.username}</b>!
+        </p>
+      )}
+      {!user && <p>Get a job, loser</p>}
     </div>
   );
 };

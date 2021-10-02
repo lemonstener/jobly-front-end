@@ -27,6 +27,7 @@ const JobList = () => {
       {jobs.map((j) => {
         return (
           <Job
+            key={j.id}
             name={j.companyName || null}
             id={j.id}
             salary={j.salary}

@@ -30,9 +30,14 @@
   border-radius: 5px;
   padding: 5px;
   position: absolute;
-  left: 0vw;
+  left: 1vw;
 }
 
 .Nav-logo:active {
   color: #ff8811;
+}
+
+.Nav-logout {
+  position: absolute;
+  right: 1vw;
 }
