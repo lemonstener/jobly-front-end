@@ -10,6 +10,8 @@ import Routes from "./Nav/Routes";
 function App() {
   const [user, setUser] = useState(null);
   const [token, setToken] = useState(localStorage.jobly);
+  const [applications, setApplications] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true);
 
   useEffect(
     function loadUserInfo() {
@@ -18,17 +20,27 @@ function App() {
           try {
             const { username } = jwt.decode(token);
             JoblyApi.token = token;
-            let currentUser = await JoblyApi.getUser(username);
+            const currentUser = await JoblyApi.getUser(username);
             setUser(currentUser);
+            setApplications(currentUser.applications);
           } catch (err) {
             setUser(null);
           }
         }
+        setLoadingUser(false);
       }
       getCurrentUser();
     },
     [token]
   );
+
+  const apply = async (id) => {
+    if (applications.includes(id)) {
+      return;
+    }
+    await JoblyApi.applyToJob(user.username, id);
+    setApplications([...applications, id]);
+  };
 
   const login = async (data) => {
     try {
@@ -57,10 +69,14 @@ function App() {
     localStorage.clear();
   };
 
+  if (loadingUser) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div className="App">
       <BrowserRouter>
-        <UserContext.Provider value={{ user, setUser }}>
+        <UserContext.Provider value={{ user, setUser, apply, applications }}>
           <Nav logout={logout} />
           <Routes login={login} register={register} />
         </UserContext.Provider>

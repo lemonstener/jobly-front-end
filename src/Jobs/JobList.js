@@ -6,6 +6,7 @@ import "./JobList.css";
 
 const JobList = () => {
   const [jobs, setJobs] = useState(null);
+  const [filteredJobs, setFilteredJobs] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -21,23 +22,49 @@ const JobList = () => {
     return <p>Loading...</p>;
   }
 
-  return (
-    <div className="JobList">
-      <SearchForm type="job" setJobs={setJobs} />
-      {jobs.map((j) => {
-        return (
-          <Job
-            key={j.id}
-            name={j.companyName || null}
-            id={j.id}
-            salary={j.salary}
-            title={j.title}
-            equity={j.equity}
-          />
-        );
-      })}
-    </div>
-  );
+  if (!filteredJobs) {
+    return (
+      <div className="JobList">
+        <SearchForm type="job" setFilteredJobs={setFilteredJobs} />
+        {jobs.map((j) => {
+          return (
+            <Job
+              key={j.id}
+              name={j.companyName || null}
+              id={j.id}
+              salary={j.salary}
+              title={j.title}
+              equity={j.equity}
+            />
+          );
+        })}
+      </div>
+    );
+  } else {
+    return (
+      <div className="JobList">
+        <SearchForm type="job" setFilteredJobs={setFilteredJobs} />
+        <button
+          className="Forms-clear-button"
+          onClick={() => setFilteredJobs(null)}
+        >
+          CLEAR
+        </button>
+        {filteredJobs.map((j) => {
+          return (
+            <Job
+              key={j.id}
+              name={j.companyName || null}
+              id={j.id}
+              salary={j.salary}
+              title={j.title}
+              equity={j.equity}
+            />
+          );
+        })}
+      </div>
+    );
+  }
 };
 
 export default JobList;

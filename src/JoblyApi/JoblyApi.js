@@ -69,6 +69,12 @@ class JoblyApi {
     return res.jobs;
   }
 
+  /** Apply to jobs **/
+
+  static async applyToJob(username, id) {
+    await this.request(`users/${username}/jobs/${id}`, {}, "post");
+  }
+
   /** Login, register, edit routes **/
 
   static async loginUser(data) {

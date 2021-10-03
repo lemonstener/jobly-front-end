@@ -9,7 +9,7 @@ const Homepage = () => {
       <h1>Jobly</h1>
       {user && (
         <p>
-          Welcome back, los... ahem, <b>{user.username}</b>!
+          Welcome back, <b>{user.username}</b>!
         </p>
       )}
       {!user && <p>Get a job, loser</p>}

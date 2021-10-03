@@ -19,10 +19,10 @@ const SearchForm = (props) => {
   const searchDB = async () => {
     if (props.type === "company") {
       const res = await JoblyApi.searchCompany(formData.name);
-      props.setCompanies(res.companies);
+      props.setFilteredCompanies(res.companies);
     } else {
       const res = await JoblyApi.searchJob(formData.name);
-      props.setJobs(res);
+      props.setFilteredJobs(res);
     }
   };
 

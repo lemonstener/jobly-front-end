@@ -45,13 +45,20 @@
   margin: 5px;
 }
 
-.Forms-search button {
+.Forms-search button,
+.Forms-clear-button {
   background-color: #20a4f3;
   color: white;
   font-weight: bold;
   font-size: 0.8rem;
   padding: 2px 6px;
   border-radius: 4px;
+  cursor: pointer;
+  margin: 5px;
+}
+
+.Forms-clear-button {
+  background-color: #ef8354;
 }
 
 .Forms-error {
